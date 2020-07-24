@@ -15,7 +15,7 @@ namespace xianrenqh\apidoc\lib;
 /**
  * 按行解析注释参数
  * Class ParseLine
- * @package itxq\apidoc\lib
+ * @package xianrenqh\apidoc\lib
  */
 class ParseLine
 {

@@ -45,7 +45,7 @@ $config = [
     'class'         => ['Api', 'Api2'], // 要生成文档的类
     'filter_method' => ['__construct'], // 要过滤的方法名称
 ];
-$api = new \itxq\apidoc\BootstrapApiDoc($config);
+$api = new \xianrenqh\apidoc\BootstrapApiDoc($config);
 $doc = $api->getHtml();
 exit($doc);
 ```
@@ -59,7 +59,7 @@ application/index/controller/Doc.php
 
 namespace app\index\controller;
 
-use itxq\apidoc\ApiDoc;
+use xianrenqh\apidoc\ApiDoc;
 use think\Controller;
 
 class Doc
@@ -73,7 +73,7 @@ class Doc
             ], // 要生成文档的类
             'filter_method' => ['__construct', '_empty'], // 要过滤的方法名称
         ];
-        $api    = new \itxq\apidoc\BootstrapApiDoc($config);
+        $api    = new \xianrenqh\apidoc\BootstrapApiDoc($config);
         $doc    = $api->getHtml();
         exit($doc);
     }

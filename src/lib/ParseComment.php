@@ -15,7 +15,7 @@ namespace xianrenqh\apidoc\lib;
 /**
  * 注释解析
  * Class ParseComment
- * @package itxq\apidoc\lib
+ * @package xianrenqh\apidoc\lib
  */
 class ParseComment
 {

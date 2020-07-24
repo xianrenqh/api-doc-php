@@ -17,7 +17,7 @@ use xianrenqh\apidoc\lib\Tools;
 /**
  * BootstrapAPI文档生成
  * Class BootstrapApiDoc
- * @package itxq\apidoc
+ * @package xianrenqh\apidoc
  */
 class BootstrapApiDoc extends ApiDoc
 {

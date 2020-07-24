@@ -17,7 +17,7 @@ use xianrenqh\apidoc\lib\ParseComment;
 /**
  * ApiDoc生成
  * Class ApiDoc
- * @package itxq\apidoc
+ * @package xianrenqh\apidoc
  */
 class ApiDoc
 {
@@ -75,7 +75,7 @@ class ApiDoc
     
     /**
      * 获取类的注释
-     * @param $class - 类名称(存在命名空间时要完整写入) eg: $class = 'itxq\\apidoc\\ApiDoc';
+     * @param $class - 类名称(存在命名空间时要完整写入) eg: $class = 'xianrenqh\\apidoc\\ApiDoc';
      * @return array - 返回格式为数组（未获取到注释时返回空数组）
      */
     private function _getClassComment($class) {
@@ -91,7 +91,7 @@ class ApiDoc
     
     /**
      * 获取指定类下方法的注释
-     * @param $class - 类名称(存在命名空间时要完整写入) eg: $class = 'itxq\\apidoc\\ApiDoc';
+     * @param $class - 类名称(存在命名空间时要完整写入) eg: $class = 'xianrenqh\\apidoc\\ApiDoc';
      * @param int $type - 方法过滤，默认只获取 public类型 方法
      * ReflectionMethod::IS_STATIC
      * ReflectionMethod::IS_PUBLIC

@@ -15,7 +15,7 @@ namespace xianrenqh\apidoc\lib;
 /**
  * 工具类
  * Class Tools
- * @package itxq\apidoc\lib
+ * @package xianrenqh\apidoc\lib
  */
 class Tools
 {

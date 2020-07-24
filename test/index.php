@@ -16,7 +16,7 @@ $config = [
     'class'         => ['Api', 'Api2'], // 要生成文档的类
     'filter_method' => ['__construct'], // 要过滤的方法名称
 ];
-$api = new \itxq\apidoc\BootstrapApiDoc($config);
+$api = new \xianrenqh\apidoc\BootstrapApiDoc($config);
 $doc = $api->getHtml();
 exit($doc);
 
