@@ -10,9 +10,9 @@
  *  ==================================================================
  */
 
-namespace itxq\apidoc;
+namespace xianrenqh\apidoc;
 
-use itxq\apidoc\lib\ParseComment;
+use xianrenqh\apidoc\lib\ParseComment;
 
 /**
  * ApiDoc生成

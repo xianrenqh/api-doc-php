@@ -1,4 +1,9 @@
 # Api-Doc-PHP
+###说明：
+此代码拷贝于IT小强的源码，开源git地址：https://github.com/itxq/api-doc-php
+
+修改部分代码，并增加tp使用注释。
+如喜欢原版请使用IT小强的git
 
 ### 主要功能：
 
@@ -10,13 +15,11 @@
 
 ### 开源地址：
 
-[【GigHub:】https://github.com/itxq/api-doc-php](https://github.com/itxq/api-doc-php)
-
-[【码云:】https://gitee.com/itxq/api-doc-php](https://github.com/itxq/api-doc-php)
+[【GigHub:】https://github.com/xianrenqh/api-doc-php](https://github.com/xianrenqh/api-doc-php)
     
 ### 扩展安装：
 
-+ 方法一：composer命令 `composer require itxq/api-doc-php`
++ 方法一：composer命令 `composer require xianrenqh/api-doc-php`
 
 + 方法二：直接下载压缩包，然后进入项目中执行 composer命令 `composer update` 来生成自动加载文件
 
@@ -46,4 +49,71 @@ $api = new \itxq\apidoc\BootstrapApiDoc($config);
 $doc = $api->getHtml();
 exit($doc);
 ```
+### thinkphp5.1使用方法：
+1、在控制器下面可以创建例如：
+application/index/controller/Doc.php
+
+文档代码为：
+~~~
+<?php
+
+namespace app\index\controller;
+
+use itxq\apidoc\ApiDoc;
+use think\Controller;
+
+class Doc
+{
+
+    public function index()
+    {
+        $config = [
+            'class'         => [
+                'app\\index\\controller\\Api',
+            ], // 要生成文档的类
+            'filter_method' => ['__construct', '_empty'], // 要过滤的方法名称
+        ];
+        $api    = new \itxq\apidoc\BootstrapApiDoc($config);
+        $doc    = $api->getHtml();
+        exit($doc);
+    }
+
+}
+~~~
+访问：http://localhost/index/doc即可访问到文档
+
+注意：Api.php控制器的方法里一定要有title，method等参数说明用来给文档提示说明文字，如果无，会报错
+
+2、Api.php案例代码：
+~~~
+namespace app\index\controller;
+
+use think\App;
+use think\Controller;
+use think\Db;
+
+/**
+ * @title API接口
+ * @desc API接口
+ * Class APi
+ * @package app\index\controller
+ */
+class Api extends Controller
+{
+    /**
+     * @title 获取所有栏目
+     * @url /index/api/homecategory
+     * @method POST
+     * @code 200 成功
+     * @code 201 失败
+     * @return int status 状态码 （具体参见状态码说明）
+     * @return string msg 提示信息
+     */
+    public function homecategory()
+    {
+        //... 你的代码
+    }
+}
+~~~
+
 ### 具体效果可运行test目录下的`index.php`查看

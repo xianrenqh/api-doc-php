@@ -10,7 +10,7 @@
  *  ==================================================================
  */
 
-namespace itxq\apidoc\lib;
+namespace xianrenqh\apidoc\lib;
 
 /**
  * 工具类

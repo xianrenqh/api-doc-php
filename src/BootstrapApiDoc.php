@@ -10,9 +10,9 @@
  *  ==================================================================
  */
 
-namespace itxq\apidoc;
+namespace xianrenqh\apidoc;
 
-use itxq\apidoc\lib\Tools;
+use xianrenqh\apidoc\lib\Tools;
 
 /**
  * BootstrapAPI文档生成

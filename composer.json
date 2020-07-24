@@ -1,12 +1,12 @@
 {
-    "name"       : "itxq/api-doc-php",
+    "name"       : "xianrenqh/api-doc-php",
     "description": "api-doc-php",
     "type"       : "library",
     "license"    : "Apache-2.0",
     "authors"    : [
         {
-            "name" : "IT小强xqitw.cn",
-            "email": "360237521@qq.com"
+            "name" : "xiaohuihui",
+            "email": "762229008@qq.com"
         }
     ],
     "require"    : {
@@ -14,7 +14,7 @@
     },
     "autoload"   : {
         "psr-4": {
-            "itxq\\apidoc\\": "src"
+            "xianrenqh\\apidoc\\": "src"
         }
     }
 }
