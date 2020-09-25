@@ -104,6 +104,7 @@ class Api extends Controller
      * @title 获取所有栏目
      * @url /index/api/homecategory
      * @method POST
+     * @header string MX-device-type 设备类型 空 必须
      * @code 200 成功
      * @code 201 失败
      * @return int status 状态码 （具体参见状态码说明）

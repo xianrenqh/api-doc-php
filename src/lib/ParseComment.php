@@ -19,17 +19,19 @@ namespace xianrenqh\apidoc\lib;
  */
 class ParseComment
 {
+
     /**
      * @var array - 注释解析后的数组
      */
     private $commentParams = [];
-    
+
     /**
      * 将注释按行解析并以数组格式返回
      * @param $comment - 原始注释字符串
      * @return bool|array
      */
-    public function parseCommentToArray($comment) {
+    public function parseCommentToArray($comment)
+    {
         $comments = [];
         if (empty($comment)) {
             return $comments;
@@ -51,13 +53,13 @@ class ParseComment
                 continue;
             }
             $_parse = $this->_parseCommentLine($v);
-            if (!$_parse) {
+            if ( ! $_parse) {
                 continue;
             }
-            $_type = $_parse['type'];
+            $_type    = $_parse['type'];
             $_content = isset($_parse['content']) ? $_parse['content'] : '';
-            if (in_array($_type, ['param', 'code', 'return'])) {
-                if (!isset($this->commentParams[$_type])) {
+            if (in_array($_type, ['param', 'header', 'code', 'return'])) {
+                if ( ! isset($this->commentParams[$_type])) {
                     $this->commentParams[$_type] = [];
                 }
                 unset($_parse['type']);
@@ -66,22 +68,25 @@ class ParseComment
                 $this->commentParams[$_type] = $_content;
             }
         }
+
         return $this->commentParams;
     }
-    
+
     /**
      * 解析注释中的参数
      * @param $line - 注释行
      * @return bool|array - 解析后的数组（解析失败返回false）
      */
-    private function _parseCommentLine($line) {
-        $line = explode(' ', $line);
+    private function _parseCommentLine($line)
+    {
+        $line    = explode(' ', $line);
         $line[0] = substr($line[0], 1);
-        $class = new ParseLine();
-        $action = 'parseLine' . Tools::underlineToHump($line[0]);
-        if (!method_exists($class, $action)) {
+        $class   = new ParseLine();
+        $action  = 'parseLine'.Tools::underlineToHump($line[0]);
+        if ( ! method_exists($class, $action)) {
             $action = 'parseLineTitle';
         }
+
         return $class->$action($line);
     }
 }
