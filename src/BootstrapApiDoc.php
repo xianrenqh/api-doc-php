@@ -12,6 +12,7 @@
 
 namespace xianrenqh\apidoc;
 
+use app\admin\model\Type;
 use xianrenqh\apidoc\lib\Tools;
 
 /**
@@ -54,6 +55,22 @@ class BootstrapApiDoc extends ApiDoc
         .table-item {background-color:#FFFFFF;padding-top: 10px;margin-bottom:10px;border: solid 1px #ccc;border-radius: 5px;}
         .list-group-item-sub{padding: .5rem 1.25rem;}
         .copyright-content{margin: 10px 0;}
+        .jsonview{white-space:pre-wrap;font-size:1.1em;font-family: emoji;}
+        .jsonview .prop{font-weight:700;}
+        .jsonview .null{color:red;}
+        .jsonview .bool{color:#00f;}
+        .jsonview .num{color:#00f;}
+        .jsonview .string{color:green;white-space:pre-wrap;}
+        .jsonview .string.multiline{display:inline-block;vertical-align:text-top;}
+        .jsonview .collapser{position:absolute;left:-1em;cursor:pointer;}
+        .jsonview .collapsible{transition:height 1.2s;transition:width 1.2s;}
+        .jsonview .collapsible.collapsed{display:inline-block;overflow:hidden;margin:0;width:1em;height:.8em;}
+        .jsonview .collapsible.collapsed:before{margin-left:.2em;width:1em;content:"…";}
+        .jsonview .collapser.collapsed{transform:rotate(0);}
+        .jsonview .q{display:inline-block;width:0;color:transparent;}
+        .jsonview li{position:relative;}
+        .jsonview ul{margin:0 0 0 2em;padding:0;list-style:none;}
+        .jsonview h1{font-size:1.2em;}
     </style>';
 
     /**
@@ -72,8 +89,8 @@ class BootstrapApiDoc extends ApiDoc
                     return false;
                 }
             }
-        });
-    </script>';
+        });</script>
+';
 
     /**
      * Bootstrap 构造函数.
@@ -123,6 +140,8 @@ class BootstrapApiDoc extends ApiDoc
             <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=0">
             <title>API文档 By Api-Doc-PHP</title>
             {$this->customCss}
+            {$this->customJs}
+
         </head>
         <body>
         <div class="container-fluid" style="max-width:1000px;">
@@ -144,7 +163,6 @@ class BootstrapApiDoc extends ApiDoc
                     </div>
                 </div>
         </div>
-        {$this->customJs}
         </body>
         </html>
 EXT;
@@ -238,6 +256,48 @@ EXT;
     }
 
     /**
+     * 解析json 并生成HTML
+     * @param array $data
+     * @return string
+     */
+    private function _getJsonData($data = [], $actionName = '')
+    {
+        $html = '';
+        if ( ! is_array($data) || count($data) < 1) {
+            return $html;
+        }
+        $actionName = str_replace("app\api\controller\\", "", $actionName);
+        var_dump($actionName);
+
+        $html .= '<div class="table-item col-md-12"><p class="table-title"><span class="btn btn-sm" style="background:#e030dc;color:#fff">返回Json</span></p>';
+        $html .= '<table class="table"><tr><td>类型：JSON&emsp; <button id="collapse-btn'.$actionName.'" class="btn btn-sm" style="background:#fd5f9e">折叠</button>&nbsp;<button id="expand-btn'.$actionName.'"class="btn btn-sm" style="background:#fd5f9e">展开</button></td><td></td></tr>';
+        foreach ($data as $key => $v) {
+            $html .= '<tr style="display:none"><td colspan="2">';
+            $html .= '<textarea class="form-control RawJson_'.$actionName.'" aria-label="With textarea" style="height:150px;">'.(Tools::getSubValue('json_content',
+                    $v, '无数据')).'</textarea>';
+            $html .= '</td></tr>';
+            $html .= '<tr style="background:#ddd;"><td><div id="json_'.$actionName.'"></div></td></tr>';
+            $html .= '<script>$(function() {
+                      json = '.(Tools::getSubValue('json_content', $v, '无数据')).';
+                      $("#json_'.$actionName.'").JSONView(json);
+                      $("#json_'.$actionName.'").JSONView(\'collapse\');
+                      $("#json-collapsed'.$actionName.'").JSONView(json, {collapsed: true, nl2br: true});
+                      $("#collapse-btn'.$actionName.'").on(\'click\', function() {
+                        $("#json_'.$actionName.'").JSONView(\'collapse\');
+                      });
+                      $("#expand-btn'.$actionName.'").on(\'click\', function() {
+                        $("#json_'.$actionName.'").JSONView(\'expand\');
+                      });
+                    });
+    </script>';
+        }
+
+        $html .= '</table></div>';
+
+        return $html;
+    }
+
+    /**
      * 解析code 并生成HTML
      * @param array $data
      * @return string
@@ -280,6 +340,7 @@ EXT;
                     {$this->_getHeaderData(Tools::getSubValue('header', $actionItem, []))}
                     {$this->_getParamData(Tools::getSubValue('param', $actionItem, []))}
                     {$this->_getReturnData(Tools::getSubValue('return', $actionItem, []))}
+                    {$this->_getJsonData(Tools::getSubValue('json', $actionItem, []), $className.'_'.$actionName)}
                     {$this->_getCodeData(Tools::getSubValue('code', $actionItem, []))}
                 </div>
 EXT;
@@ -372,7 +433,6 @@ EXT;
         if (empty($bootstrapCss)) {
             return $this->customCss;
         }
-        //$this->customCss = '<style type="text/css">' . $bootstrapCss . '</style>' . $this->customCss;
         $this->customCss = ' <link href="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">'.$this->customCss;
 
         return $this->customCss;
@@ -386,6 +446,7 @@ EXT;
     {
         $js             = '<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>';
         $js             .= '<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" type="text/javascript"></script>';
+        $js             .= '<script src="https://cdn.bootcdn.net/ajax/libs/jquery-jsonview/1.2.2/jquery.jsonview.min.js"></script>';
         $this->customJs = $js.$this->customJs;
 
         return $this->customJs;

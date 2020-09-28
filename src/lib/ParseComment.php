@@ -45,6 +45,7 @@ class ParseComment
         if (preg_match_all('#^\s*\*(.*)#m', $matches, $lines) === false) {
             return $comments;
         }
+
         $comments = $lines[1];
         // 去除无用的注释
         foreach ($comments as $k => $v) {
@@ -58,7 +59,7 @@ class ParseComment
             }
             $_type    = $_parse['type'];
             $_content = isset($_parse['content']) ? $_parse['content'] : '';
-            if (in_array($_type, ['param', 'header', 'code', 'return'])) {
+            if (in_array($_type, ['param', 'header', 'code', 'return', 'json'])) {
                 if ( ! isset($this->commentParams[$_type])) {
                     $this->commentParams[$_type] = [];
                 }

@@ -65,6 +65,19 @@ class ParseLine
     }
 
     /**
+     * 解析 json
+     * @param $line
+     * @return array
+     */
+    public function parseLineJson($line)
+    {
+        return [
+            'type'         => isset($line[0]) ? $line[0] : '',
+            'json_content' => isset($line[1]) ? $line[1] : '',
+        ];
+    }
+
+    /**
      * 解析 code
      * @param $line
      * @return array
@@ -92,4 +105,6 @@ class ParseLine
             'return_title' => isset($line[3]) ? $line[3] : '',
         ];
     }
+
+
 }

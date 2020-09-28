@@ -5,6 +5,11 @@
 修改部分代码，并增加tp使用注释。
 如喜欢原版请使用IT小强的git
 
+###版本更新：
+    1.4.0 新增输出返回json数据
+    1.3.0 新增header参数
+    1.2.0 优化原版本
+
 ### 主要功能：
 
 + 根据接口注释自动生成接口文档
@@ -107,6 +112,7 @@ class Api extends Controller
      * @header string MX-device-type 设备类型 空 必须
      * @code 200 成功
      * @code 201 失败
+     * @json {"code":200,"msg":"登录成功","data":{"token":"47b536ddbfccc0a777434a48e5a33a63","shop_id":10001,"admin_type":1,"user":{"id":2,"name":"A002"}}}
      * @return int status 状态码 （具体参见状态码说明）
      * @return string msg 提示信息
      */

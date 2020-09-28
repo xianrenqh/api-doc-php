@@ -16,21 +16,25 @@
  */
 class Api
 {
+
     /**
      * @title 用户登录API
      * @url https://wwww.baidu.com/login
      * @method POST
      * @param string username 账号 空 必须
      * @param string password 密码 空 必须
+     * @header string MX-device-type 设备类型 空 必须
+     * @json {"code":200,"msg":"登录成功","data":{"token":"47b536ddbfccc0a777434a48e5a33a63","shop_id":10001,"admin_type":1,"user":{"id":2,"name":"A002"}}}
      * @code 1 成功
      * @code 2 失败
      * @return int code 状态码（具体参见状态码说明）
      * @return string msg 提示信息
      */
-    public function login() {
+    public function login()
+    {
         return json_encode(['code' => 1, 'msg' => '登录成功']);
     }
-    
+
     /**
      * @title 用户注册API
      * @url https://wwww.baidu.com/reg
@@ -43,7 +47,8 @@ class Api
      * @return int code 状态码（具体参见状态码说明）
      * @return string msg 提示信息
      */
-    public function reg() {
+    public function reg()
+    {
         return json_encode(['code' => 1, 'msg' => '注册成功']);
     }
 }
