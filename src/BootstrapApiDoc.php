@@ -45,12 +45,12 @@ class BootstrapApiDoc extends ApiDoc
         .table-item {background-color:#FFFFFF;padding-top: 10px;margin-bottom:10px;border: solid 1px #ccc;border-radius: 5px;}
         .list-group-item-sub{padding: .5rem 1.25rem;}
         .copyright-content{margin: 10px 0;}
-        .jsonview{white-space:pre-wrap;font-size:1.1em;font-family: emoji;}
-        .jsonview .prop{font-weight:700;}
+        .jsonview{white-space:pre-wrap;font-size:0.8em;font-family: emoji;color:#ee6a5e}
+        .jsonview .prop{font-weight:400;}
         .jsonview .null{color:red;}
-        .jsonview .bool{color:#00f;}
-        .jsonview .num{color:#00f;}
-        .jsonview .string{color:green;white-space:pre-wrap;}
+        .jsonview .bool{color:#a37901;}
+        .jsonview .num{color:#fabd07;}
+        .jsonview .string{color:#26913f;white-space:pre-wrap;}
         .jsonview .string.multiline{display:inline-block;vertical-align:text-top;}
         .jsonview .collapser{position:absolute;left:-1em;cursor:pointer;}
         .jsonview .collapsible{transition:height 1.2s;transition:width 1.2s;}
@@ -259,13 +259,13 @@ EXT;
         $actionName = str_replace("app\api\controller\\", "", $actionName);
 
         $html .= '<div class="table-item col-md-12"><p class="table-title"><span class="btn btn-sm" style="background:#e030dc;color:#fff">返回Json</span></p>';
-        $html .= '<table class="table"><tr><td>类型：JSON&emsp; <button id="collapse-btn'.$actionName.'" class="btn btn-sm" style="background:#fd5f9e">折叠</button>&nbsp;<button id="expand-btn'.$actionName.'"class="btn btn-sm" style="background:#fd5f9e">展开</button></td><td></td></tr>';
+        $html .= '<table class="table"><tr><td>类型：JSON&emsp; <button id="collapse-btn'.$actionName.'" class="btn btn-sm" style="background:#fd5f9e;color:#fff">折叠</button>&nbsp;<button id="expand-btn'.$actionName.'"class="btn btn-sm" style="background:#fd5f9e;color:#fff">展开</button></td><td></td></tr>';
         foreach ($data as $key => $v) {
             $html .= '<tr style="display:none"><td colspan="2">';
             $html .= '<textarea class="form-control RawJson_'.$actionName.'" aria-label="With textarea" style="height:150px;">'.(Tools::getSubValue('json_content',
                     $v, '无数据')).'</textarea>';
             $html .= '</td></tr>';
-            $html .= '<tr style="background:#ddd;"><td><div id="json_'.$actionName.'"></div></td></tr>';
+            $html .= '<tr style="background:#1d1f21;"><td><div id="json_'.$actionName.'"></div></td></tr>';
             $html .= '<script>$(function() {
                       json = '.(Tools::getSubValue('json_content', $v, '无数据')).';
                       $("#json_'.$actionName.'").JSONView(json);
