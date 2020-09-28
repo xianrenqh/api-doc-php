@@ -1,14 +1,4 @@
 <?php
-/**
- *  ==================================================================
- *        文 件 名: BootstrapApiDoc.php
- *        概    要: BootstrapAPI文档生成
- *        作    者: IT小强
- *        创建时间: 2018/6/6 13:57
- *        修改时间:
- *        copyright (c) 2016 - 2018 mail@xqitw.cn
- *  ==================================================================
- */
 
 namespace xianrenqh\apidoc;
 
@@ -267,7 +257,6 @@ EXT;
             return $html;
         }
         $actionName = str_replace("app\api\controller\\", "", $actionName);
-        var_dump($actionName);
 
         $html .= '<div class="table-item col-md-12"><p class="table-title"><span class="btn btn-sm" style="background:#e030dc;color:#fff">返回Json</span></p>';
         $html .= '<table class="table"><tr><td>类型：JSON&emsp; <button id="collapse-btn'.$actionName.'" class="btn btn-sm" style="background:#fd5f9e">折叠</button>&nbsp;<button id="expand-btn'.$actionName.'"class="btn btn-sm" style="background:#fd5f9e">展开</button></td><td></td></tr>';
