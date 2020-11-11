@@ -80,6 +80,7 @@ class ParseComment
      */
     private function _parseCommentLine($line)
     {
+        $line    = preg_replace("/\s(?=\s)/", "\\1", $line);
         $line    = explode(' ', $line);
         $line[0] = substr($line[0], 1);
         $class   = new ParseLine();
