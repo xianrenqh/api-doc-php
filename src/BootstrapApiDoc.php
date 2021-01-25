@@ -84,6 +84,7 @@ class BootstrapApiDoc extends ApiDoc
 
     /**
      * Bootstrap 构造函数.
+     *
      * @param array $config - 配置信息
      */
     public function __construct($config)
@@ -107,13 +108,15 @@ class BootstrapApiDoc extends ApiDoc
 
     /**
      * 输出HTML
+     *
      * @param int $type - 方法过滤，默认只获取 public类型 方法
-     * ReflectionMethod::IS_STATIC
-     * ReflectionMethod::IS_PUBLIC
-     * ReflectionMethod::IS_PROTECTED
-     * ReflectionMethod::IS_PRIVATE
-     * ReflectionMethod::IS_ABSTRACT
-     * ReflectionMethod::IS_FINAL
+     *                  ReflectionMethod::IS_STATIC
+     *                  ReflectionMethod::IS_PUBLIC
+     *                  ReflectionMethod::IS_PROTECTED
+     *                  ReflectionMethod::IS_PRIVATE
+     *                  ReflectionMethod::IS_ABSTRACT
+     *                  ReflectionMethod::IS_FINAL
+     *
      * @return string
      */
     public function getHtml($type = \ReflectionMethod::IS_PUBLIC)
@@ -168,7 +171,9 @@ EXT;
 
     /**
      * 解析return 并生成HTML
+     *
      * @param array $data
+     *
      * @return string
      */
     private function _getReturnData($data = [])
@@ -193,7 +198,9 @@ EXT;
 
     /**
      * 解析param 并生成HTML
+     *
      * @param array $data
+     *
      * @return string
      */
     private function _getParamData($data = [])
@@ -220,7 +227,9 @@ EXT;
 
     /**
      * 解析header并生成HTML
+     *
      * @param array $data
+     *
      * @return string
      */
     private function _getHeaderData($data = [])
@@ -247,7 +256,9 @@ EXT;
 
     /**
      * 解析json 并生成HTML
+     *
      * @param array $data
+     *
      * @return string
      */
     private function _getJsonData($data = [], $actionName = '')
@@ -288,7 +299,9 @@ EXT;
 
     /**
      * 解析code 并生成HTML
+     *
      * @param array $data
+     *
      * @return string
      */
     private function _getCodeData($data = [])
@@ -312,9 +325,11 @@ EXT;
 
     /**
      * 获取指定接口操作下的文档信息
-     * @param $className - 类名
+     *
+     * @param $className  - 类名
      * @param $actionName - 操作名
      * @param $actionItem - 接口数据
+     *
      * @return string
      */
     private function _getActionItem($className, $actionName, $actionItem)
@@ -339,8 +354,10 @@ EXT;
 
     /**
      * 获取指定API类的文档HTML
+     *
      * @param $className - 类名称
      * @param $classItem - 类数据
+     *
      * @return string
      */
     private function _getClassItem($className, $classItem)
@@ -364,7 +381,9 @@ EXT;
 
     /**
      * 获取API文档HTML
+     *
      * @param array $data - 文档数据
+     *
      * @return string
      */
     private function _getDocList($data)
@@ -384,7 +403,9 @@ EXT;
 
     /**
      * 获取顶部导航HTML
+     *
      * @param $data -API文档数据
+     *
      * @return string
      */
     private function _getTopNavList($data)
@@ -434,7 +455,7 @@ EXT;
     private function _getJs()
     {
         $js             = '<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>';
-        $js             .= '<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" type="text/javascript"></script>';
+        $js             .= '<script src="https://cdn.bootcss.com/twitter-bootstrap/4.4.1/js/bootstrap.min.js" type="text/javascript"></script>';
         $js             .= '<script src="https://cdn.bootcdn.net/ajax/libs/jquery-jsonview/1.2.2/jquery.jsonview.min.js"></script>';
         $this->customJs = $js.$this->customJs;
 
